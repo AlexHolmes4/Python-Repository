@@ -40,8 +40,18 @@ class LinkedList:
             if p._element == key:
                 return index
             p = p._next
-            index += 1
+            index = index + 1
         return -1
+
+    def addfirst(self, e):
+        newest = _Node(e, None)
+        if self.isempty():
+            self._head = newest
+            self._tail = newest
+        else:
+            newest._next = self._head
+            self._head = newest
+        self._size += 1
 
 L = LinkedList()
 L.addlast(7)
@@ -50,8 +60,13 @@ L.addlast(12)
 L.addlast(8)
 L.addlast(3)
 L.display()
-i = L.search(8)
-print('Result:',i)
-index = L.search(20)
-print('Result:',i)
-
+print('Size:',len(L))
+L.addfirst(15)
+L.display()
+print('Size:',len(L))
+L.addfirst(25)
+L.display()
+print('Size:',len(L))
+L.addlast(35)
+L.display()
+print('Size:',len(L))
