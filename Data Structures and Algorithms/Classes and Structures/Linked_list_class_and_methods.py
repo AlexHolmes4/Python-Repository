@@ -74,6 +74,17 @@ class LinkedList:
         self._size -= 1
         return e
 
+    def removeany(self, position):
+        p = self._head
+        i = 1
+        while i < position - 1:
+            p = p._next
+            i = i + 1
+        e = p._next._element
+        p._next = p._next._next
+        self._size -= 1
+        return e
+
     def display(self):
         p = self._head
         while p:
@@ -99,7 +110,7 @@ L.addlast(8)
 L.addlast(3)
 L.display()
 print('Size:',len(L))
-ele = L.removelast()
+ele = L.removeany(3)
 L.display()
 print('Size:',len(L))
-print('Element Removed',ele)
+print('Removed Element:',ele)
