@@ -1,1 +1,1 @@
-<h1> This is my general Python Repostiory seperate from courses <h/1>
+<h2> This is my general Python Repostiory <h/2>
