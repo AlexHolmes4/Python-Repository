@@ -58,6 +58,22 @@ class LinkedList:
             self._tail = None
         return e
 
+    def removelast(self):
+        if self.isempty():
+            print('List is empty')
+            return
+        p = self._head
+        i = 1
+        while i < len(self) - 1:
+            p = p._next
+            i = i + 1
+        self._tail = p
+        p = p._next
+        e = p._element
+        self._tail._next = None
+        self._size -= 1
+        return e
+
     def display(self):
         p = self._head
         while p:
@@ -83,7 +99,7 @@ L.addlast(8)
 L.addlast(3)
 L.display()
 print('Size:',len(L))
-ele = L.removefirst()
+ele = L.removelast()
 L.display()
 print('Size:',len(L))
-print('Element Removed:',ele)
+print('Element Removed',ele)
