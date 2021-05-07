@@ -26,6 +26,38 @@ class LinkedList:
         self._tail = newest
         self._size += 1
 
+    def addfirst(self, e):
+        newest = _Node(e, None)
+        if self.isempty():
+            self._head = newest
+            self._tail = newest
+        else:
+            newest._next = self._head
+            self._head = newest
+        self._size += 1
+
+    def addany(self, e, position):
+        newest = _Node(e, None)
+        p = self._head
+        i = 1
+        while i < position-1:
+            p = p._next
+            i = i + 1
+        newest._next = p._next
+        p._next = newest
+        self._size += 1
+
+    def removefirst(self):
+        if self.isempty():
+            print('List is empty')
+            return
+        e = self._head._element
+        self._head = self._head._next
+        self._size -= 1
+        if self.isempty():
+            self._tail = None
+        return e
+
     def display(self):
         p = self._head
         while p:
@@ -43,16 +75,6 @@ class LinkedList:
             index = index + 1
         return -1
 
-    def addfirst(self, e):
-        newest = _Node(e, None)
-        if self.isempty():
-            self._head = newest
-            self._tail = newest
-        else:
-            newest._next = self._head
-            self._head = newest
-        self._size += 1
-
 L = LinkedList()
 L.addlast(7)
 L.addlast(4)
@@ -61,12 +83,7 @@ L.addlast(8)
 L.addlast(3)
 L.display()
 print('Size:',len(L))
-L.addfirst(15)
+ele = L.removefirst()
 L.display()
 print('Size:',len(L))
-L.addfirst(25)
-L.display()
-print('Size:',len(L))
-L.addlast(35)
-L.display()
-print('Size:',len(L))
+print('Element Removed:',ele)
