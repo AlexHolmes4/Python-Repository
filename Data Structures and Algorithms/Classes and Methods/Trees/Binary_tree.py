@@ -1,5 +1,3 @@
-from QueuesLinked import QueuesLinked
-
 class _Node:
     __slots__ = '_element', '_left', '_right'
 
@@ -33,20 +31,15 @@ class BinaryTree:
             self.postorder(troot._right)
             print(troot._element, end=' ')
 
-    def levelorder(self):
-        Q = QueuesLinked()
-        t = self._root
-        print(t._element,end=' ')
-        Q.enqueue(t)
-        while not Q.isempty():
-            t = Q.dequeue()
-            if t._left:
-                print(t._left._element,end=' ')
-                Q.enqueue(t._left)
-            if t._right:
-                print(t._right._element,end=' ')
-                Q.enqueue(t._right)
-
+    def height(self,troot):
+        if troot:
+            x = self.height(troot._left)
+            y = self.height(troot._right)
+            if x > y:
+                return x + 1
+            else:
+                return y + 1
+        return 0
 
 x = BinaryTree()
 y = BinaryTree()
@@ -69,6 +62,6 @@ t.preorder(t._root)
 print()
 print('Postorder Traversal')
 t.postorder(t._root)
-print()
-t.levelorder()
+print('Height')
+print(t.height(t._root)-1)
 print()
